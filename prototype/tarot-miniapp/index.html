@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Таро-расклад дня</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Главный экран -->
+    <section id="screen-home" class="screen active">
+      <header class="hero">
+        <div class="moon" aria-hidden="true"></div>
+        <h1>Таро-расклад дня</h1>
+        <p class="sub" id="today"></p>
+      </header>
+      <div class="deck-preview" id="deck-preview" aria-hidden="true"></div>
+      <h2 class="label">Выберите расклад</h2>
+      <div class="spreads">
+        <button class="spread-btn" data-count="1">
+          <span class="spread-icon"><svg viewBox="0 0 24 34" width="22" height="32"><rect x="2" y="2" width="20" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="17" r="4" fill="currentColor"/></svg></span>
+          <span class="spread-title">Карта дня</span>
+          <span class="spread-desc">1 карта — главный совет на сегодня</span>
+        </button>
+        <button class="spread-btn" data-count="3">
+          <span class="spread-icon"><svg viewBox="0 0 24 34" width="22" height="32"><rect x="2" y="2" width="20" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="17" r="4" fill="currentColor"/></svg><svg viewBox="0 0 24 34" width="22" height="32"><rect x="2" y="2" width="20" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="17" r="4" fill="currentColor"/></svg><svg viewBox="0 0 24 34" width="22" height="32"><rect x="2" y="2" width="20" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="17" r="4" fill="currentColor"/></svg></span>
+          <span class="spread-title">Прошлое · Настоящее · Будущее</span>
+          <span class="spread-desc">3 карты — развитие ситуации</span>
+        </button>
+      </div>
+      <button class="link-btn" id="btn-history">История раскладов</button>
+    </section>
+
+    <!-- Экран расклада -->
+    <section id="screen-spread" class="screen">
+      <div class="topbar">
+        <button class="back" data-go="home" aria-label="Назад">←</button>
+        <h2 id="spread-title">Расклад</h2>
+        <span></span>
+      </div>
+      <p class="hint" id="spread-hint">Нажмите на карту, чтобы открыть её</p>
+      <div class="table" id="table"></div>
+      <div class="readings" id="readings"></div>
+      <div class="actions" id="spread-actions" hidden>
+        <button class="primary" id="btn-premium">✨ Подробный расклад</button>
+        <button class="secondary" data-go="home">Новый расклад</button>
+      </div>
+    </section>
+
+    <!-- Paywall -->
+    <section id="screen-paywall" class="screen">
+      <div class="topbar">
+        <button class="back" data-go="spread" aria-label="Назад">←</button>
+        <h2>Премиум</h2>
+        <span></span>
+      </div>
+      <div class="paywall">
+        <div class="pw-cards" id="pw-cards"></div>
+        <h3>Подробный расклад</h3>
+        <ul class="pw-list">
+          <li>Развёрнутое толкование каждой карты</li>
+          <li>Связи между картами и общий вывод</li>
+          <li>Советы по любви, работе и деньгам</li>
+          <li>Сохранение в историю навсегда</li>
+        </ul>
+        <button class="primary pay" id="btn-pay">Подробный расклад за 50 ⭐</button>
+        <p class="fine">Оплата через Telegram Stars. Прототип: платёж не списывается.</p>
+      </div>
+    </section>
+
+    <!-- История -->
+    <section id="screen-history" class="screen">
+      <div class="topbar">
+        <button class="back" data-go="home" aria-label="Назад">←</button>
+        <h2>История</h2>
+        <button class="back small" id="btn-clear" aria-label="Очистить">🗑</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
